@@ -7,8 +7,6 @@ from unittest import TestCase
 from unittest.mock import Mock
 
 
-
-
 #
 #  Testing async functions
 #
@@ -20,11 +18,16 @@ class Sum:
         await asyncio.sleep(1)
         return x+y
 
+
+#
+#  Makes use of fixture
+#
 @pytest.fixture()
-def mock_sum(self, monkeypatch):
+def mock_sum(monkeypatch):
     future = asyncio.Future()
     monkeypatch.setattr(Sum, 'async_sum', future)
     return future
+
 
 class TestAsync(TestCase):
     # Test ansync by waiting
@@ -47,7 +50,10 @@ class TestAsync(TestCase):
         # Assert
         self.assertEqual(12, res)
 
-    def x_test_using_mock(monkeypatch):
+    #
+    # makes use of Mock
+    #
+    def x_test_using_mock(self, monkeypatch):
         # Arrange
         monkeypatch.setattr(Sum, 'sync_sum', 42)
         summer = Sum()
@@ -56,7 +62,7 @@ class TestAsync(TestCase):
         result = summer.sync_sum( 4, 8)
 
         # Assert
-        self.assertEqual(42, res)
+        self.assertEqual(42, result)
 
 
 @pytest.fixture
@@ -66,7 +72,6 @@ def input_value():
 
 def test_multiple_of_3(input_value):
     assert input_value == 42
-
 
 
 #
@@ -87,7 +92,6 @@ def test_sum_param(x, y, expected):
 
     # Assert
     assert result == expected
-
 
 
 tuesday = datetime.datetime(year=2019, month=1, day=1)
