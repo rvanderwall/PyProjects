@@ -1,0 +1,47 @@
+1. update JHU data.
+   python process-jhu.py
+   mv *-jhu ../COVID19/jhu-data
+
+2. update NYT data
+   python process-us-nyt.py
+
+3. scrape wiki
+   update dates in scraper script
+   python scrape-wiki.py
+   files end up in wiki-tmp
+
+4. update country_data manually
+
+4b. process canada csv (see datasets)
+
+4c  process italy-lom:
+python calc-italy-lom.py
+
+4d process finland
+cd datasets
+python process-finland.py
+edit country_data/finland as appropriate
+
+5. update UK data
+download csv file from:
+https://coronavirus.data.gov.uk/
+cd uk-data
+./process-uk-new.sh
+
+5b. run uk-data script
+cd uk-data
+./process-uk.sh
+
+6. generate time-indexed data
+   python process-time.py
+
+6b. CHECK FOR MISSING DATA:
+tail -1 aligned/country_data/*
+   
+7. update increase rate curves
+   python smoothrates.py
+
+8. build everything
+   python build-web.py
+
+9. edit commentaries, repeat 8

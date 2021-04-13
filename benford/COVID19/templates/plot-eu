@@ -1,0 +1,28 @@
+set terminal pngcairo dashed font "Helvetica,12" size 800,600
+set output "../graphs/covid-eu.png"
+set logscale y
+set key at -1,2000 box
+set label "Updates at http://nrg.cs.ucl.ac.uk/mjh/covid19" at graph 0.02,0.98 font "Helvetica,11" textcolor "#a0a0a0"
+set yrange [200:YMAX]
+set xrange [-50:0]
+set ylabel "Confirmed COVID19 cases"
+set xlabel "Days (from DATE March 2020)"
+set mxtics
+set grid mxtics xtics ytics mytics
+offset = OFFSET
+esoff = 6
+froff = 8.5
+deoff = 9
+nloff = 16
+ukoff = 15
+plot "../aligned/country_data/italy" using ($1):2 w l lw 2 lc 1 t "Italy", \
+"../aligned/country_data/spain" using ($1 - esoff):2 w l lw 2 lc "orange" t sprintf("Spain (%d days behind Italy)", esoff), \
+"../aligned/country_data/france" using ($1 - froff):2 w l lw 2 lc "red" t sprintf("France (%d days behind Italy)", froff), \
+"../aligned/country_data/germany" using ($1 - deoff):2 w l lw 2 lc "#00b000" t sprintf("Germany (%d days behind Italy)", deoff), \
+"../aligned/country_data/netherlands" using ($1 - nloff):2 w l lw 2 lc "#a0a0a0" t sprintf("Netherlands (%d days behind Italy)", nloff), \
+"../aligned/country_data/uk" using ($1 - ukoff):2 w l lw 2 lc "blue" t sprintf("UK (%d days behind Italy)", ukoff), \
+1.35**(x+offset + 9.5) lc "black"  dt 4 t "35% daily increase",\
+1.22**(x+offset + 22.5) lc "black" dashtype 2 t "22% daily increase",\
+1.135**(x+offset + 50.8) lc "black" dashtype 5 t "13.5% daily increase", \
+1.08**(x+offset + 106.8) lc "black" dashtype 3 t "8% daily increase"
+

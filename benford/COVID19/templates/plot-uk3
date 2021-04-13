@@ -1,0 +1,57 @@
+set terminal pngcairo dashed font "Helvetica,12" size 800,600
+set output "../graphs/covid-uk-all.png"
+set logscale y
+offset = (OFFSET + 5.5)
+#set key at -1,70 box
+set key bottom right box
+#set key at -22,100
+set yrange [10:YMAX]
+set xrange [(10-OFFSET):]
+set ylabel "COVID19 cases per million inhabitants"
+set xlabel "Days (from DATE March 2020)"
+set mxtics
+set grid mxtics xtics ytics mytics
+ukpop = 67.7
+frpop = 65.2
+depop = 83.7
+itpop = 60.5
+supop = 8.6
+espop = 46.7
+nopop = 5.4
+lompop = 10
+atpop = 9.0
+sepop = 9.1
+lonpop = 8.9
+nwpop = 7.2
+epop = 6.2
+swpop = 5.6
+nepop = 8.1
+midpop = 10.7
+nipop = 1.8
+scpop = 5.3
+wapop = 3.0
+
+scoff = 18.5
+waoff = 13
+nioff = 20.5
+ukoff = 18
+plot "../aligned/country_data/italy" using ($1):($2/itpop) w l lc "#a0a0a0" lw 2 t "Italy", \
+"../aligned/country_data/uk-pillar1" using ($1 - ukoff):($2/ukpop) w l lc "red" lw 2 t sprintf("UK P1 (%d days behind Italy)", ukoff), \
+"../aligned/uk/uk-regions-cum" using ($1 -waoff):($12/wapop) w l lw 2 lc "#00b000" t sprintf("Wales (%d days behind Italy)", waoff), \
+"../aligned/uk/uk-regions-cum" using ($1 -scoff):($11/scpop) w l lw 2 lc "blue" t sprintf("Scotland (%d days beind Italy)", scoff), \
+"../aligned/uk/uk-regions-cum" using ($1 -nioff):($10/nipop) w l lw 2 lc "brown" t sprintf("Northern Ireland (%d days behind Italy)", nioff),\
+1.35**(x+offset-5.5 - 4) lc "black"  dt 4 t "35% daily increase",\
+1.22**(x+offset-5.5 + 2) lc "black" dashtype 2 t "22% daily increase", \
+1.135**(x+offset-5.5 + 18.5) lc "black" dashtype 5 t "13.5% daily increase",\
+1.08**(x+offset-5.5 + 53.3) lc "black" dashtype 3 t "8% daily increase"
+
+#"../uk-data/uk-regions-cum" using ($0 +13.5 -lonoff - offset):($3/lonpop) w l lw 2 lc "red" t sprintf("London (18 days behind Lombardy)",lon#"../uk-data/uk-regions-cum" using ($0 +13.5 -roeoff - offset):(($2+$4+$5+$6+$7+$8)/(epop+midpop+nepop+nwpop+sepop+swpop)) w l lw 2 lc "magenta" t sprintf("Rest of England (%d days behind Italy)", roeoff - lomoff), \
+off), \
+#"switzerland" using ($0+3.5-offset):($2/supop) w l lw 2 lc "brown" t "Switzerland (11 days behind Lombardy, see comment)", \
+#"austria" using ($0 +4.5 - offset):($2/atpop) w l lw 2 lc "orange" t "Austria (14 days behind Lombardy)", \
+#"uk-regions-cum" using ($0 -11 - offset):($4/midpop) w l lw 2 lc "#00a000" t "Midlands", \
+#"uk-regions-cum" using ($0 -11 - offset):($5/nepop) w l lw 2 lc "blue" t "North East", \
+#"uk-regions-cum" using ($0 -11 - offset):($6/nwpop) w l lw 2 lc "brown" t "North West", \
+#"uk-regions-cum" using ($0 -9.5 - offset):($7/sepop) w l lw 2 lc "#00a0ff" t "South East", \
+#"uk-regions-cum" using ($0 -12 - offset):($8/swpop) w l lw 2 lc "magenta" t "South West", \
+

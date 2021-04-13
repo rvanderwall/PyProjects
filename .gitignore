@@ -1,2 +1,7 @@
 AWS
+out_graphs
+*.pyc
+__pycache__
+venv
+.idea
 

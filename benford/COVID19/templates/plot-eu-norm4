@@ -1,0 +1,43 @@
+set terminal pngcairo dashed font "Helvetica,12" size 800,600
+set output "../graphs/covid-eu-norm4.png"
+set mxtics
+set grid mxtics xtics ytics mytics
+set logscale y
+set label "Updates at http://nrg.cs.ucl.ac.uk/mjh/covid19" at graph 0.02,0.98 font "Helvetica,11" textcolor "#a0a0a0"
+offset = OFFSET
+set key at -1,14 box
+set yrange [0.3:YMAX]
+set xrange [(5-offset):]
+set ylabel "COVID19 cases per million inhabitants"
+set xlabel "Days (from DATE March 
+skoff = 19
+bgoff = 21
+rsoff = 22
+hroff = 18.5
+czoff = 14
+groff = 13.5
+sioff = 9
+rooff = 21
+ploff = 23
+huoff = 24
+plot "../aligned/country_data/italy" using ($1):($2/itpop) w l lw 2 t "Italy", \
+"../aligned/country_data/greece" using ($1 - groff):($2/grpop) w l lw 2 lc "#8080ff" t sprintf("Greece (%d days offset from Italy)", groff), \
+"../aligned/country_data/czechrepublic" using ($1 - czoff):($2/czpop) w l lw 2 lc "blue" t sprintf("Czech Republic (%d days behind Italy)", czoff), \
+"../aligned/country_data/slovenia" using ($1 - sioff):($2/sipop) w l lw 2 lc "#00b000" t sprintf("Slovenia (%d days offset from Italy)", sioff), \
+"../aligned/country_data/slovakia" using ($1 - skoff):($2/skpop) w l lw 2 lc "black" t sprintf("Slovakia (%d days behind Italy)", skoff), \
+"../aligned/wiki/croatia-wiki" using ($1 - hroff):($2/hrpop) w l lw 2 lc "brown" t sprintf("Croatia (%d days behind Italy)", hroff), \
+"../aligned/country_data/romania" using ($1 - rooff):($2/ropop) w l lw 2 lc "orange" t sprintf("Romania (%d days behind Italy)", rooff), \
+"../aligned/country_data/poland" using ($1 - ploff):($2/plpop) w l lw 2 lc "red" t sprintf("Poland (%d days behind Italy)", ploff), \
+"../aligned/country_data/hungary" using ($1 - huoff):($2/hupop) w l lw 2 lc "#80a080" t sprintf("Hungary (%d days behind Italy)", huoff), \
+"../aligned/country_data/bulgaria" using ($1 - bgoff):($2/bgpop) w l lw 2 lc "#ffa0c0" t sprintf("Bulgaria (%d days behind Italy)", bgoff), \
+"../aligned/wiki/serbia-wiki" using ($1 - rsoff):($2/rspop) w l lw 2 lc 6 t sprintf("Serbia (%d days behind Italy)", rsoff), \
+1.35**(x+offset - 4) lc "black"  dt 4 t "35% daily increase",\
+1.22**(x+offset + 2) lc "black" dashtype 2 t "22% daily increase"
+
+#"../country_data/estonia" using ($0 +7 - offset):($2/eepop) w l lw 2 lc "brown" t "Estonia (9 days behind Italy)", \
+#"france" using ($0 + 1 - offset):($2/frpop) w l lw 2 lc "red" t "France (9 days behind Italy)", \
+#"spain" using ($0 + 1  - offset):($2/espop) w l lw 2 t "Spain (9 days behind Italy)", \
+#"germany" using ($0 -1.5 - offset):($2/depop) w l lw 2 lc "#00b000" t "Germany (10.5 days behind Italy)", \
+#"uk" using ($0 -2 - offset):($2/ukpop) w l lw 2 lc "blue" t "UK (14 days behind Italy)", \
+
+

@@ -1,0 +1,19 @@
+
+
+SOUND LIBRARIES:
+    playsound - simple, cross platform
+    simpleaudio - for wav files.
+    winsound
+
+
+https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3
+https://www2.cs.uic.edu/~i101/SoundFiles/PinkPanther30.wav
+
+
+pip install playsound
+pip install PyObjC
+
+pip install simpleaudio
+pip install numpy
+
+
