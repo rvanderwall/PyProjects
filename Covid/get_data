@@ -1,0 +1,5 @@
+
+FILE=covid-19-cases-march-28-2020.csv
+src=https://raw.githubusercontent.com/fullstackpython/blog-code-examples/master/pandas-covid-19/${FILE}
+
+curl $src -o $FILE

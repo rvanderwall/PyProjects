@@ -1,0 +1,35 @@
+
+Mostly, I followed the instructions here:
+https://towardsdatascience.com/how-to-get-started-with-pyspark-1adc142456ec
+
+But with a few variations
+
+
+1)
+I don't use conda, I just create virtual environments directly.
+
+2)
+Just downloading as they suggest seems less error prone but I used 2.4.7 instead of 2.3
+
+downloaded the spark-2.4.7-bin-hadoop2.8.tgz from 
+https://downloads.apache.org/spark/spark-2.4.7/spark-2.4.7-bin-hadoop2.8.tgz
+
+unpack it into /opt
+
+
+3)
+No change
+
+4)
+Make sure you point to /opt for spark
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+export SPARK_HOME=/opt/spark-2.4.7-bin-hadoop2.8
+export PATH=$SPARK_HOME/bin:$PATH
+export PYSPARK_PYTHON=python3
+
+
+5)
+pyspark
+
+
