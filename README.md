@@ -1,4 +1,5 @@
 Various small projects
+The IDE should open at the top level, each project is a package.
 
 
 # benford   
