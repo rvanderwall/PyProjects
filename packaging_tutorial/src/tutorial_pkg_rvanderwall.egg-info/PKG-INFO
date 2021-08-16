@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: tutorial-pkg-rvanderwall
+Version: 0.0.1
+Summary: Tutorial on how to package python code.
+Home-page: htps://githb.com/rvanderwall/projects
+Author: Robert Vanderwall
+Author-email: rvanderwall@yahoo.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI_Approved :: MIT License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Set up
+```
+pip install --upgrade build
+```
+
+#  Create src directory and code under it
+#  Create pyproject.toml
+#  Create setup.cfg
+
+# build package
+```
+python -m build
+```
+
+
