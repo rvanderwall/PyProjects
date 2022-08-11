@@ -1,0 +1,31 @@
+# --------------------------------------------
+# https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-setup.html
+
+# Install AWS CLI
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg ./AWSCLIV2.pkg -target /
+
+# Verify
+which aws
+aws --version
+
+
+# --------------------------------------------
+#   https://github.com/nathan-v/aws_okta_keyman
+#   https://pypi.org/project/aws-okta-keyman/
+# OKTA Key management
+pip install aws-okta-keyman
+
+# Create local credentials:  Use your AM password, not the Trimble pwd
+aws_okta_keyman -o trimble -u rvander2@am.trimblecorp.net -R
+
+
+
+# --------------------------------------------
+pip install boto3
+
+# S3 commands
+#   https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html
+python s3_ls.py
+
+
